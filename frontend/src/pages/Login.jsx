@@ -1,12 +1,51 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { ShopContext } from '../context/ShopContext';
+import axios from 'axios';
 
 const Login = () => {
   const [currentState, setCurrentState] = useState('Sign Up');
+  const {token,setToken,navigate,backendUrl}=useContext(ShopContext);
+
+  const[name,setName]=useState('')
+  const[password,setPassword]=useState('')
+  const[email,setEmail]=useState('')
 
   const onSubmitHandler = async(event) => {
     event.preventDefault();
+    try{
+      if(currentState==='Sign Up'){
+        const response=await axios.post(backendUrl+'/api/user/register',{name,email,password});
+        if(response.data.success){
+          setToken(response.data.token)
+          localStorage.setItem('token',response.data.token)
+        }
+        else{
+          toast.error(response.data.message)
+        }
+      }
+      else{
+        const response=await axios.post(backendUrl+'/api/user/login',{email,password});
+        if(response.data.success){
+          setToken(response.data.token)
+          localStorage.setItem('token',response.data.token)
+        }
+        else{
+          toast.error(response.data.message)
+        }
+      }
+
+    }
+    catch(error){
+      console.log(error)
+      toast.error(error.message)
+    }
   }
+
+  useEffect(()=>{
+    if(token){
+      navigate('/')
+    }
+  },[token])
 
   const toggleState = () => {
     setCurrentState(prev => (prev === 'Login' ? 'Sign Up' : 'Login'));
@@ -20,7 +59,7 @@ const Login = () => {
       </div>
 
       {currentState === 'Sign Up' && (
-        <input
+        <input onChange={(e)=>setName(e.target.value)} value={name}
           type="text"
           className='w-full px-3 py-2 border border-gray-800'
           placeholder='Name'
@@ -29,6 +68,7 @@ const Login = () => {
       )}
 
       <input
+      onChange={(e)=>setEmail(e.target.value)} value={email}
         type="email"
         className='w-full px-3 py-2 border border-gray-800'
         placeholder='Email'
@@ -36,6 +76,7 @@ const Login = () => {
       />
 
       <input
+      onChange={(e)=>setPassword(e.target.value)} value={password}
         type="password"
         className='w-full px-3 py-2 border border-gray-800'
         placeholder='Password'

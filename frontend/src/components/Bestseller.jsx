@@ -12,7 +12,7 @@ const Bestseller = () => {
       const bestProduct = products.filter((item) => item.bestseller);
       setBestseller(bestProduct.slice(0, 5));
     }
-  }, [products]); // ✅ Watch for when products becomes available
+  }, [products]); 
 
   return (
     <div className="my-10 px-4">
