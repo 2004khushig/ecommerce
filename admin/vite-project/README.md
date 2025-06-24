@@ -1,12 +1,85 @@
-# React + Vite
+# Feral E-commerce Admin Panel
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the admin dashboard for the Feral E-commerce platform, built with React, Vite, and Tailwind CSS.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Secure admin login
+- Add new products with images, details, and sizes
+- View and remove products from the product list
+- View orders (orders page placeholder)
+- Responsive sidebar navigation
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- [React](https://react.dev/)
+- [Vite](https://vitejs.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [React Router](https://reactrouter.com/)
+- [Axios](https://axios-http.com/)
+- [React Toastify](https://fkhadra.github.io/react-toastify/)
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or above recommended)
+- Backend API running (see `/backend` folder)
+
+### Installation
+
+1. Navigate to the admin panel directory:
+
+   ```sh
+   cd admin/vite-project
+   ```
+
+2. Install dependencies:
+
+   ```sh
+   npm install
+   ```
+
+3. Create a `.env` file in the root of the `vite-project` directory and set the backend URL:
+
+   ```
+   VITE_BACKEND_URL=http://localhost:4000
+   ```
+
+4. Start the development server:
+
+   ```sh
+   npm run dev
+   ```
+
+   The admin panel will be available at [http://localhost:5173](http://localhost:5173).
+
+## Project Structure
+
+```
+vite-project/
+  ├── public/                # Static assets
+  ├── src/
+  │   ├── assets/            # Images and static JS assets
+  │   ├── components/        # Navbar, Sidebar, Login, etc.
+  │   ├── pages/             # Add, List, Orders pages
+  │   ├── index.css          # Tailwind and global styles
+  │   └── main.jsx           # App entry point
+  ├── tailwind.config.js     # Tailwind CSS config
+  ├── vite.config.js         # Vite config
+  └── package.json           # Project metadata and scripts
+```
+
+## Available Scripts
+
+- `npm run dev` - Start the development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview the production build
+
+## Environment Variables
+
+- `VITE_BACKEND_URL` - URL of the backend API (default: `http://localhost:4000`)
+
+## License
+
+This project is licensed

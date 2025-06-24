@@ -151,7 +151,9 @@ useEffect(()=>{
     navigate,
     backendUrl,
     setToken,
-    token
+    token,
+    setCartItems,
+    setProducts
   };
 
   return (
